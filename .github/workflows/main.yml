@@ -24,6 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install apache-airflow
+          pip install pyspark
           pip install jq  # Required for parsing JSON in Bash
 
       - name: Read Airflow connection details from secret file
