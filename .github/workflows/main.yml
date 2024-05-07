@@ -29,8 +29,8 @@ jobs:
       - name: Read Airflow connection details from secret file
         id: read_secret
         run: |
-          AIRFLOW_CONNECTION=$(cat AIRFLOW_CONNECTION_SECRET)
-          echo "::set-output name=airflow_connection::$AIRFLOW_CONNECTION"
+            AIRFLOW_CONNECTION=$(echo "${{ secrets.AIRFLOW_CONNECTION_SECRET }}")
+            echo "::set-output name=airflow_connection::$AIRFLOW_CONNECTION"
 
       - name: Generate Airflow DAGs
         run: |
