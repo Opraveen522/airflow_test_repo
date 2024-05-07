@@ -11,7 +11,7 @@ default_args = {
 }
 
 dag = DAG(
-    'transform_csv_uppercase',
+    'uppercase',
     default_args=default_args,
     description='A DAG to transform CSV file to uppercase',
     schedule_interval=None,
@@ -21,7 +21,7 @@ input_path =  "netflix_titles.csv"
 output_path = "netflix_output.csv"
 
 transform_task = PythonOperator(
-    task_id='transform_csv_to_uppercase',
+    task_id='uppercase',
     python_callable=transform_csv_to_uppercase,
     op_kwargs={'input_file_path': input_path, 'output_file_path': output_path},
     dag=dag,
