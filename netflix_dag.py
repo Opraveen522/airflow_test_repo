@@ -17,8 +17,8 @@ dag = DAG(
     schedule_interval=None,
 )
 
-input_path =  "/home/opraveen/airflow_workspace/airflow/netflix_titles.csv"
-output_path = "/home/opraveen/airflow_workspace/airflow/netflix_output.csv"
+input_path =  "netflix_titles.csv"
+output_path = "netflix_output.csv"
 
 transform_task = PythonOperator(
     task_id='transform_csv_to_uppercase',
