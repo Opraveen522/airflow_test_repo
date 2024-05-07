@@ -1,0 +1,51 @@
+name: Airflow Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          pip install apache-airflow
+          pip install jq  # Required for parsing JSON in Bash
+
+      - name: Read Airflow connection details from secret file
+        id: read_secret
+        run: |
+          AIRFLOW_CONNECTION=$(cat AIRFLOW_CONNECTION_SECRET)
+          echo "::set-output name=airflow_connection::$AIRFLOW_CONNECTION"
+
+      - name: Generate Airflow DAGs
+        run: |
+          # Command to generate Airflow DAGs from your Python script and function file
+          python netflix_dag.py
+
+      - name: Run PySpark code
+        run: |
+          # Command to run your PySpark code
+          spark-submit netflix_tranformed.py
+
+      - name: Commit and push DAGs
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add .
+          git commit -m "Update Airflow DAGs"
+          git push
