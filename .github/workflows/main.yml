@@ -43,10 +43,10 @@ jobs:
           # Command to run your PySpark code
           spark-submit netflix_tranformed.py
 
-      - name: Commit and push DAGs
+      - name: Commit and push changes
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          git add .
-          git commit -m "Update Airflow DAGs"
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add output.csv
+          git commit -m "Update output CSV file"
           git push
