@@ -21,7 +21,7 @@ input_path =  "netflix_titles.csv"
 output_path = "netflix_output.csv"
 
 transform_task = PythonOperator(
-    task_id='uppercase',
+    task_id='transform_csv_to_uppercase',
     python_callable=transform_csv_to_uppercase,
     op_kwargs={'input_file_path': input_path, 'output_file_path': output_path},
     dag=dag,
