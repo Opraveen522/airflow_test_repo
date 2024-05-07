@@ -21,7 +21,7 @@ def transform_csv_to_uppercase(input_file_path, output_file_path):
 
 # Example usage of the function
 if __name__ == "__main__":
-    input_path = "/home/opraveen/airflow_workspace/airflow/netflix_titles.csv"
-    output_path = "home/opraveen/airflow_workspace/airflow/netflix_output.csv"
+    input_path = "netflix_titles.csv"
+    output_path = "netflix_output.csv"
     transform_csv_to_uppercase(input_path, output_path)
 
